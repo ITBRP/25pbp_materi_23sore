@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+
+    <form id="myForm" enctype="multipart/form-data">
+        <div>
+            <label for="">NIM</label> <br>
+            <input type="text" name="nim" id="nim">
+        </div>
+        <div>
+            <label for="">Nama</label> <br>
+            <input type="text" name="nama" id="nama">
+        </div>
+        <div>
+            <button type="submit">Simpan</button>
+        </div>
+    </form>
+
+    <script>
+        $(document).on("submit", "#myForm", function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                url: "http://localhost:800/www/2526_ganjil/25pbp_23pagib/be/create_formdata.php",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    alert('sukses');
+                    // $("#response").html(
+                    //     "<pre style='color:green;'>" + JSON.stringify(res, null, 2) + "</pre>"
+                    // );
+                },
+                error: function (xhr) {
+                    alert('gagal');
+                    // $("#response").html(
+                    //     "<pre style='color:red;'>" + xhr.responseText + "</pre>"
+                    // );
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
