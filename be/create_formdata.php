@@ -20,7 +20,7 @@ if(!isset($_POST['nim'])){
         $errors['nim'] = "NIM tidak boleh kosong";
     }else{
         if(!preg_match('/^[1-9][0-9]{2}$/', $_POST['nim'])){
-            $errors['nim'] = "Format NIM harus angka 10 digit, angka awal tidak boleh 0";
+            $errors['nim'] = "Format NIM harus angka 3 digit, angka awal tidak boleh 0";
         }
     }
 }
