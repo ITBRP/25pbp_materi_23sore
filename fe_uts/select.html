@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Buku</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="myTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Gambar</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        showTable();
+        function showTable(){
+            $.ajax({
+                url: "http://localhost:800/www/2526_ganjil/25pbp_uts_23sore/uts/select.php",
+                type: "GET",
+                beforeSend: function(){
+                    
+                },
+                success: function (res) {
+                    let tbody = $('#myTable tbody');
+                    tbody.empty();
+
+                    if (res.data.length === 0) {
+                        tbody.html(
+                            `<tr><td colspan="4" class="text-center">Data kosong</td></tr>`
+                        );
+                        return;
+                    }
+
+                    $.each(res.data, function(index, item){
+                        tbody.append(`
+                            <tr>
+                                <th scope="row">${index + 1}</th>
+                                <td>${item.name}</td>
+                                <td>${item.category}</td>
+                                <td>${item.price}</td>
+                                <td>${item.stock}</td>
+                                <td><img src="http://localhost:800/www/2526_ganjil/25pbp_uts_23sore/uts/img/${item.image}" width="50"></td>
+                            </tr>
+                        `);
+                    });
+                },
+                error: function (res) {
+                    
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
