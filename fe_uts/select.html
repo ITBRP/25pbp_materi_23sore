@@ -44,9 +44,6 @@
             $.ajax({
                 url: "http://localhost:800/www/2526_ganjil/25pbp_uts_23sore/uts/select.php",
                 type: "GET",
-                beforeSend: function(){
-                    
-                },
                 success: function (res) {
                     let tbody = $('#myTable tbody');
                     tbody.empty();
@@ -71,9 +68,6 @@
                         `);
                     });
                 },
-                error: function (res) {
-                    
-                }
             });
         }
     </script>
